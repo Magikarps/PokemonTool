@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_menu"
-        android:title="Record"
+    <item android:id="@+id/record"
+        android:title="@string/record"
         android:icon="@drawable/ic_edit_black_24dp" />
-    <item android:id="@+id/action_my_tour"
-        android:title="Team List"
+    <item android:id="@+id/team_list"
+        android:title="@string/team_list"
         android:icon="@drawable/ic_format_list_bulleted_black_24dp" />
-    <item android:id="@+id/action_map"
-        android:title="History"
+    <item android:id="@+id/history"
+        android:title="@string/history"
         android:icon="@drawable/ic_history_black_24dp" />
 </menu>
