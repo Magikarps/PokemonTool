@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemontool.R
-import com.example.pokemontool.model.Team
+import com.example.pokemontool.database.Team
 
 class TeamListAdapter(private var teamList: Array<Team>, private val context: Context) :
     RecyclerView.Adapter<TeamListAdapter.TeamViewHolder>() {

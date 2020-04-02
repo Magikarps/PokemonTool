@@ -1,4 +1,4 @@
-package com.example.pokemontool.model
+package com.example.pokemontool.database
 
 class Team(
     var teamName: String,

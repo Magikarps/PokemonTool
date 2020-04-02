@@ -1,14 +1,16 @@
 package com.example.pokemontool.ui.history
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemontool.R
-import com.example.pokemontool.model.History
-import java.util.*
+import com.example.pokemontool.database.PokemonToolDatabase
+import com.example.pokemontool.databinding.FragmentHistoryBinding
 
 class HistoryFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
@@ -21,19 +23,22 @@ class HistoryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var view = inflater.inflate(R.layout.fragment_history, container, false)
-        recyclerView = view.findViewById(R.id.history_list)
+        val binding: FragmentHistoryBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false)
 
-        // TODO: dummy data
-        var historyL: Array<History> = emptyArray()
-        historyL += History(Date(), true, "Team 1", "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp")
-        historyL += History(Date(), false, "Team 2", "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp")
+        val application = requireNotNull(this.activity).application
+        val dataSource = PokemonToolDatabase.getInstance(application).historyDao
+        val viewModelFactory = HistoryViewModelFactory(dataSource, application)
+        val viewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(HistoryViewModel::class.java)
 
-        recyclerView.apply {
-            adapter = HistoryAdapter(historyL, context)
-        }
+        binding.model = viewModel
+        binding.setLifecycleOwner(this)
 
-        return view
+        val adapter = HistoryAdapter(HistoryListner { hId -> viewModel.onHistoryClicked(hId) })
+        binding.historyList.adapter = adapter
+
+        return binding.root
     }
 
 }

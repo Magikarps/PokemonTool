@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemontool.R
-import com.example.pokemontool.model.Team
+import com.example.pokemontool.database.Team
 
 class TeamListFragment : Fragment() {
     private lateinit var teamRecyclerView: RecyclerView
@@ -26,8 +26,24 @@ class TeamListFragment : Fragment() {
 
         // TODO: dummy data
         var teamL: Array<Team> = emptyArray()
-        teamL += Team("Team 1", "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp", "Magikarp")
-        teamL += Team("Team 2", "Pikachu", "Pikachu", "Pikachu", "Pikachu", "Pikachu", "Pikachu")
+        teamL += Team(
+            "Team 1",
+            "Magikarp",
+            "Magikarp",
+            "Magikarp",
+            "Magikarp",
+            "Magikarp",
+            "Magikarp"
+        )
+        teamL += Team(
+            "Team 2",
+            "Pikachu",
+            "Pikachu",
+            "Pikachu",
+            "Pikachu",
+            "Pikachu",
+            "Pikachu"
+        )
 
         teamRecyclerView.apply { adapter =
             TeamListAdapter(teamL, context)
