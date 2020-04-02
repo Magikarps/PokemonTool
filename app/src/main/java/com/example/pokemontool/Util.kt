@@ -13,3 +13,9 @@ fun getLast3Pokemon(h: History): String {
 fun get3PokemonStr(p1: String?, p2: String?, p3: String?): String {
     return "$p1 $p2 $p3"
 }
+
+
+enum class Mode {
+    ADD, EDIT, REFERENCE
+
+}

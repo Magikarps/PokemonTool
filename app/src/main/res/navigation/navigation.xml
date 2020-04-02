@@ -23,10 +23,19 @@
         android:id="@+id/teamListFragment"
         android:name="com.example.pokemontool.ui.team.TeamListFragment"
         android:label="fragment_team_list"
-        tools:layout="@layout/fragment_team_list" />
+        tools:layout="@layout/fragment_team_list" >
+        <action
+            android:id="@+id/action_teamListFragment_to_teamDetailFragment"
+            app:destination="@id/teamDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.pokemontool.ui.history.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/teamDetailFragment"
+        android:name="com.example.pokemontool.ui.team.TeamDetailFragment"
+        android:label="fragment_team_detail"
+        tools:layout="@layout/fragment_team_detail" />
 </navigation>
