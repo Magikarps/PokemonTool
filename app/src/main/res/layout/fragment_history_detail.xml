@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.record.RecordInputFragment">
+    tools:context=".HistoryDetailFragment">
 
     <ScrollView
         android:id="@+id/scrollView"
@@ -24,9 +24,27 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/date_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:textColor="@color/baseTextColor"
+                android:textSize="@dimen/text_size_basic"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:inputType="date" />
+
+            <TextView
                 android:id="@+id/season_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/season"
                 android:textColor="@color/baseTextColor"
                 android:textSize="@dimen/text_size_basic"
@@ -271,7 +289,7 @@
         android:layout_margin="16sp"
         android:contentDescription="@string/done"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_check_40dp"
+        android:src="@drawable/ic_edit_40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/scrollView"
         app:layout_constraintHorizontal_bias="1.0"
