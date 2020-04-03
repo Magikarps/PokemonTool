@@ -9,6 +9,8 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemontool.R
 import com.example.pokemontool.database.Team
+import com.example.pokemontool.getFirst3Pokemon
+import com.example.pokemontool.getLast3Pokemon
 
 class TeamListAdapter(private var teamList: Array<Team>, private val context: Context) :
     RecyclerView.Adapter<TeamListAdapter.TeamViewHolder>() {
@@ -42,8 +44,8 @@ class TeamListAdapter(private var teamList: Array<Team>, private val context: Co
 
         fun bind(team: Team) {
             teamName.text = team.teamName
-            party1.text = team.getFirst3Pokemon()
-            party2.text = team.getLast3Pokemon()
+            party1.text = getFirst3Pokemon(team)
+            party2.text = getLast3Pokemon(team)
         }
     }
 }

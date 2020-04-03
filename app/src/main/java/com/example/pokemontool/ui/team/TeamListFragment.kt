@@ -27,6 +27,7 @@ class TeamListFragment : Fragment() {
         // TODO: dummy data
         var teamL: Array<Team> = emptyArray()
         teamL += Team(
+            0L,
             "Team 1",
             "Magikarp",
             "Magikarp",
@@ -36,6 +37,7 @@ class TeamListFragment : Fragment() {
             "Magikarp"
         )
         teamL += Team(
+            0L,
             "Team 2",
             "Pikachu",
             "Pikachu",
