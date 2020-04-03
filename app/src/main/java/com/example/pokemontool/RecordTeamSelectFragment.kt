@@ -1,14 +1,14 @@
-package com.example.pokemontool.ui.record
+package com.example.pokemontool
 
+import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pokemontool.R
 
-
-class RecordInputFragment : Fragment() {
+class RecordTeamSelectFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +19,7 @@ class RecordInputFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_record_input, container, false)
+        return inflater.inflate(R.layout.fragment_record_team_select, container, false)
     }
 
 }
