@@ -7,7 +7,44 @@
 
     <fragment
         android:id="@+id/recordTeamSelectFragment"
-        android:name="com.example.pokemontool.RecordTeamSelectFragment"
+        android:name="com.example.pokemontool.ui.record.RecordTeamSelectFragment"
         android:label="fragment_record_team_select"
-        tools:layout="@layout/fragment_record_team_select" />
+        tools:layout="@layout/fragment_record_team_select" >
+        <action
+            android:id="@+id/action_recordTeamSelectFragment_to_recordInputFragment"
+            app:destination="@id/recordInputFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recordInputFragment"
+        android:name="com.example.pokemontool.ui.record.RecordInputFragment"
+        android:label="fragment_record_input"
+        tools:layout="@layout/fragment_record_input" />
+    <fragment
+        android:id="@+id/teamListFragment"
+        android:name="com.example.pokemontool.ui.team.TeamListFragment"
+        android:label="fragment_team_list"
+        tools:layout="@layout/fragment_team_list" >
+        <action
+            android:id="@+id/action_teamListFragment_to_teamDetailFragment"
+            app:destination="@id/teamDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.pokemontool.ui.history.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyFragment_to_historyDetailFragment"
+            app:destination="@id/historyDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamDetailFragment"
+        android:name="com.example.pokemontool.ui.team.TeamDetailFragment"
+        android:label="fragment_team_detail"
+        tools:layout="@layout/fragment_team_detail" />
+    <fragment
+        android:id="@+id/historyDetailFragment"
+        android:name="com.example.pokemontool.HistoryDetailFragment"
+        android:label="fragment_history_detail"
+        tools:layout="@layout/fragment_history_detail" />
 </navigation>

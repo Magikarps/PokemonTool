@@ -5,4 +5,26 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select_team">SELECT TEAM</string>
     <string name="next">Next</string>
+    <string name="season">SEASON</string>
+    <string name="done">Done</string>
+    <string name="team">TEAM</string>
+    <string name="my_pokemon">MY POKEMON</string>
+    <string name="opponent_pokemon">OPPONENT POKEMON</string>
+    <string name="result">RESULT</string>
+    <string name="win">WIN</string>
+    <string name="lose">LOSE</string>
+    <string name="record">Record</string>
+    <string name="team_list">Team List</string>
+    <string name="history">History</string>
+    <string name="my_team">My Team:&#160;</string>
+    <string name="opponent">Opponent:</string>
+    <string name="add">Add</string>
+    <string name="pokemon">POKEMON</string>
+    <string name="_1">1:</string>
+    <string name="_2">2:</string>
+    <string name="_3">3:</string>
+    <string name="_4">4:</string>
+    <string name="_5">5:</string>
+    <string name="_6">6:</string>
+    <string name="date">DATE</string>
 </resources>
