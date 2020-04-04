@@ -1,41 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="16sp">
+<layout>
 
-    <TextView
-        android:id="@+id/team_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:text="Team 1:"
-        android:textColor="@color/baseTextColor"
-        android:textSize="@dimen/text_size_basic" />
+    <data>
 
-    <LinearLayout
-        android:layout_width="0dp"
+        <variable
+            name="team"
+            type="com.example.pokemontool.database.Team" />
+        <variable
+            name="clickListener"
+            type="com.example.pokemontool.ui.team.TeamListListener" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:onClick="@{() -> clickListener.onClick(team)}"
+        android:padding="16sp">
 
         <TextView
-            android:id="@+id/party1"
-            android:layout_width="match_parent"
+            android:id="@+id/team_name"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Magikarp Magikarp Magikarp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:text="@{team.teamName}"
             android:textColor="@color/baseTextColor"
             android:textSize="@dimen/text_size_basic" />
 
-        <TextView
-            android:id="@+id/party2"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Magikarp Magikarp Magikarp"
-            android:textColor="@color/baseTextColor"
-            android:textSize="@dimen/text_size_basic" />
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/party1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                First3Pokemon="@{team}"
+                android:textColor="@color/baseTextColor"
+                android:textSize="@dimen/text_size_basic" />
+
+            <TextView
+                android:id="@+id/party2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                Last3Pokemon="@{team}"
+                android:textColor="@color/baseTextColor"
+                android:textSize="@dimen/text_size_basic" />
+        </LinearLayout>
+
     </LinearLayout>
-
-</LinearLayout>
+</layout>
