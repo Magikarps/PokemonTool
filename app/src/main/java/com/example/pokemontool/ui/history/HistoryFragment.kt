@@ -27,8 +27,7 @@ class HistoryFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false)
 
         val application = requireNotNull(this.activity).application
-        val dataSource = PokemonToolDatabase.getInstance(application).historyDao
-        val viewModelFactory = HistoryViewModelFactory(dataSource, application)
+        val viewModelFactory = HistoryViewModelFactory(application)
         val viewModel =
             ViewModelProviders.of(this, viewModelFactory).get(HistoryViewModel::class.java)
 
