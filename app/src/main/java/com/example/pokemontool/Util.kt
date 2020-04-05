@@ -20,11 +20,15 @@ fun getLast3Pokemon(t: Team): String {
 }
 
 fun get3PokemonStr(p1: String?, p2: String?, p3: String?): String {
-    return "$p1 $p2 $p3"
+    var result = ""
+    p1?.let{ result += p1 }
+    p2?.let{ result += " $p2" }
+    p3?.let{ result += " $p3" }
+
+    return result
 }
 
 
 enum class Mode {
     ADD, EDIT, REFERENCE
-
 }

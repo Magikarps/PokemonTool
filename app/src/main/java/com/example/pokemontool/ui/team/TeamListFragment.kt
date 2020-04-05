@@ -1,16 +1,20 @@
 package com.example.pokemontool.ui.team
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.example.pokemontool.Mode
 import com.example.pokemontool.R
-import com.example.pokemontool.database.Team
+import com.example.pokemontool.databinding.FragmentTeamListBinding
 
 class TeamListFragment : Fragment() {
-    private lateinit var teamRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,38 +25,33 @@ class TeamListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view = inflater.inflate(R.layout.fragment_team_list, container, false)
-        teamRecyclerView = view.findViewById(R.id.team_list)
+        val binding: FragmentTeamListBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_team_list, container, false)
+        val viewModel = TeamListViewModel()
+        binding.model = viewModel
+        binding.setLifecycleOwner(this)
 
-        // TODO: dummy data
-        var teamL: Array<Team> = emptyArray()
-        teamL += Team(
-            0L,
-            "Team 1",
-            "Magikarp",
-            "Magikarp",
-            "Magikarp",
-            "Magikarp",
-            "Magikarp",
-            "Magikarp"
-        )
-        teamL += Team(
-            0L,
-            "Team 2",
-            "Pikachu",
-            "Pikachu",
-            "Pikachu",
-            "Pikachu",
-            "Pikachu",
-            "Pikachu"
-        )
+        val adapter = TeamListAdapter(TeamListListener { teamId ->
+            Toast.makeText(context, "$teamId clicked!", Toast.LENGTH_SHORT).show()
+            viewModel.onTeamClicked(teamId)
+        })
+        binding.teamList.adapter = adapter
 
-        teamRecyclerView.apply { adapter =
-            TeamListAdapter(teamL, context)
+        viewModel.teamList.observe(viewLifecycleOwner, Observer {
+            it?.let { adapter.submitList(it) }
+        })
+        viewModel.navigateToTeamDetail.observe(viewLifecycleOwner, Observer { teamId ->
+            teamId?.let {
+                val bundle = bundleOf("mode" to Mode.EDIT, "teamId" to teamId)
+                this.findNavController().navigate(R.id.action_teamListFragment_to_teamDetailFragment, bundle)
+            }
+        })
+        binding.addButton.setOnClickListener {
+            val bundle = bundleOf("mode" to Mode.ADD)
+            this.findNavController().navigate(R.id.action_teamListFragment_to_teamDetailFragment, bundle)
         }
-//        teamRecyclerView.adapter = TeamListAdapter(teamL)
 
-        return view
+        return binding.root
     }
 
 }

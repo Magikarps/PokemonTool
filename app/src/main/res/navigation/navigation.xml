@@ -53,7 +53,12 @@
         android:id="@+id/teamDetailFragment"
         android:name="com.example.pokemontool.ui.team.TeamDetailFragment"
         android:label="fragment_team_detail"
-        tools:layout="@layout/fragment_team_detail" />
+        tools:layout="@layout/fragment_team_detail" >
+        <action
+            android:id="@+id/action_teamDetailFragment_to_teamListFragment"
+            app:destination="@id/teamListFragment"
+            app:popUpTo="@+id/teamListFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyDetailFragment"
         android:name="com.example.pokemontool.HistoryDetailFragment"

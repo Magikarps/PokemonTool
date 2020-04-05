@@ -4,22 +4,36 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "team")
-class Team(
-    @PrimaryKey(autoGenerate = true)
-    var teamId: Long,
-    @ColumnInfo(name = "team_name")
-    var teamName: String,
-    @ColumnInfo(name = "pokemon_1")
-    var pokemon1: String,
-    @ColumnInfo(name = "pokemon2")
-    var pokemon2: String?,
-    @ColumnInfo(name = "pokemon3")
-    var pokemon3: String?,
-    @ColumnInfo(name = "pokemon4")
-    var pokemon4: String?,
-    @ColumnInfo(name = "pokemon5")
-    var pokemon5: String?,
-    @ColumnInfo(name = "pokemon6")
-    var pokemon6: String?
-)
+class Team {
+    var teamId: Long? = null
+    var teamName: String? = null
+    var pokemon1: String? = null
+    var pokemon2: String? = null
+    var pokemon3: String? = null
+    var pokemon4: String? = null
+    var pokemon5: String? = null
+    var pokemon6: String? = null
+
+    constructor()
+
+    constructor(
+        teamId: Long?,
+        teamName: String? = null,
+        pokemon1: String? = null,
+        pokemon2: String? = null,
+        pokemon3: String? = null,
+        pokemon4: String? = null,
+        pokemon5: String? = null,
+        pokemon6: String? = null
+    ) {
+        this.teamId = teamId
+        this.teamName = teamName
+        this.pokemon1 = pokemon1
+        this.pokemon2 = pokemon2
+        this.pokemon3 = pokemon3
+        this.pokemon4 = pokemon4
+        this.pokemon5 = pokemon5
+        this.pokemon6 = pokemon6
+    }
+
+}
