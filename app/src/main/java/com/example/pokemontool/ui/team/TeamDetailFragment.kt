@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.pokemontool.Mode
 import com.example.pokemontool.R
 import com.example.pokemontool.databinding.FragmentTeamDetailBinding
@@ -35,7 +39,22 @@ class TeamDetailFragment : Fragment() {
         val viewModelFactory = TeamDetailViewModelFactory(mode, teamId)
         val viewModel =
             ViewModelProvider(this, viewModelFactory).get(TeamDetailViewModel::class.java)
-        binding.team = viewModel.team
+        binding.viewModel = viewModel
+
+        binding.editButton.setOnClickListener {
+            viewModel.onClickEdit()
+        }
+        binding.doneButton.setOnClickListener {
+            viewModel.onClickDone()
+        }
+        viewModel.navigateToEditMode.observe(viewLifecycleOwner, Observer {
+            val bundle = bundleOf("mode" to Mode.EDIT, "teamId" to viewModel.team.value?.teamId)
+            this.findNavController().navigate(R.id.action_teamDetailFragment_self, bundle)
+        })
+        viewModel.navigateToTeamList.observe(viewLifecycleOwner, Observer {
+            this.findNavController().navigate(R.id.action_teamDetailFragment_to_teamListFragment)
+        })
+
         return binding.root
     }
 
