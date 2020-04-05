@@ -57,6 +57,6 @@ class TeamListCallback : DiffUtil.ItemCallback<Team>() {
     }
 }
 
-class TeamListListener(val clickListener: (teamId: Long) -> Unit) {
+class TeamListListener(val clickListener: (teamId: Long?) -> Unit) {
     fun onClick(team: Team) = clickListener(team.teamId)
 }

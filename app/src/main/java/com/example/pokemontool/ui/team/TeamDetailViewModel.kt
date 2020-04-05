@@ -7,8 +7,14 @@ import kotlinx.coroutines.Job
 
 class TeamDetailViewModel(private val mode: Mode, private val teamId: Long?) : ViewModel() {
 
-    private val viewModelJob = Job()
-    private var team: Team? = null
+    var team: Team? = null
+    init {
+        team = if (teamId == null) {
+            Team()
+        } else {
+            Team(teamId, "test")
+        }
+    }
 
     val doneButtonVisible = false
     val editButtonVisible = true

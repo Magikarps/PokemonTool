@@ -1,19 +1,18 @@
 package com.example.pokemontool.ui.team
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.findNavController
+import com.example.pokemontool.Mode
 import com.example.pokemontool.R
-import com.example.pokemontool.database.Team
 import com.example.pokemontool.databinding.FragmentTeamListBinding
-import com.example.pokemontool.network.DataManager
-import com.google.android.material.snackbar.Snackbar
 
 class TeamListFragment : Fragment() {
 
@@ -34,12 +33,23 @@ class TeamListFragment : Fragment() {
 
         val adapter = TeamListAdapter(TeamListListener { teamId ->
             Toast.makeText(context, "$teamId clicked!", Toast.LENGTH_SHORT).show()
+            viewModel.onTeamClicked(teamId)
         })
         binding.teamList.adapter = adapter
 
         viewModel.teamList.observe(viewLifecycleOwner, Observer {
             it?.let { adapter.submitList(it) }
         })
+        viewModel.navigateToTeamDetail.observe(viewLifecycleOwner, Observer { teamId ->
+            teamId?.let {
+                val bundle = bundleOf("mode" to Mode.EDIT, "teamId" to teamId)
+                this.findNavController().navigate(R.id.action_teamListFragment_to_teamDetailFragment, bundle)
+            }
+        })
+        binding.addButton.setOnClickListener {
+            val bundle = bundleOf("mode" to Mode.ADD)
+            this.findNavController().navigate(R.id.action_teamListFragment_to_teamDetailFragment, bundle)
+        }
 
         return binding.root
     }
