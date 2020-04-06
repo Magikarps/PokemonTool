@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.pokemontool.database.Team
 
-object DataManager {
+object RepositoryManager {
     fun getTeam(teamId: Long): Team? {
         // TODO: dummy data
         val data = getTeamList()

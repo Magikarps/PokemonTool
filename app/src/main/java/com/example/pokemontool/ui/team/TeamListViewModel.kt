@@ -2,10 +2,10 @@ package com.example.pokemontool.ui.team
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pokemontool.network.DataManager
+import com.example.pokemontool.network.RepositoryManager
 
 class TeamListViewModel : ViewModel() {
-    val teamList = DataManager.getTeamList()
+    val teamList = RepositoryManager.getTeamList()
 
     private val _navigateToTeamDetail = MutableLiveData<Long>()
     val navigateToTeamDetail

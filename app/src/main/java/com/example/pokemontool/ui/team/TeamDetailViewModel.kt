@@ -5,16 +5,32 @@ import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import com.example.pokemontool.Mode
+import com.example.pokemontool.database.Pokemon
+import com.example.pokemontool.database.PokemonDao
 import com.example.pokemontool.database.Team
-import com.example.pokemontool.network.DataManager
+import com.example.pokemontool.network.RepositoryManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.withContext
 
-class TeamDetailViewModel(private val mode: Mode, private val teamId: Long?) : ViewModel() {
+class TeamDetailViewModel(
+    private val mode: Mode,
+    teamId: Long?,
+    private val dataSource: PokemonDao
+) :
+    ViewModel() {
 
     // UI
     var doneButtonVisible = View.GONE
     var editButtonVisible = View.GONE
     var inputType = 0
+
+    // viewModelJob allows us to cancel all coroutines started by this ViewModel
+    private var viewModelJob = Job()
+    private val dbScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
     // Screen Transition
     private val _navigateToEditMode = MutableLiveData<Boolean>()
@@ -24,9 +40,14 @@ class TeamDetailViewModel(private val mode: Mode, private val teamId: Long?) : V
     val navigateToTeamList: LiveData<Boolean>
         get() = _navigateToTeamList
 
+    // Data
     private val _team = MutableLiveData<Team>()
     val team: LiveData<Team>
         get() = _team
+    val allPokemon = liveData {
+        val data = getAllPokemon()
+        emit(data)
+    }
 
     init {
         when (mode) {
@@ -35,11 +56,11 @@ class TeamDetailViewModel(private val mode: Mode, private val teamId: Long?) : V
                 setAddMode()
             }
             Mode.EDIT -> {
-                _team.value = DataManager.getTeam(teamId!!)
+                _team.value = RepositoryManager.getTeam(teamId!!)
                 setEditMode()
             }
             Mode.REFERENCE -> {
-                _team.value = DataManager.getTeam(teamId!!)
+                _team.value = RepositoryManager.getTeam(teamId!!)
                 setReferenceMode()
             }
         }
@@ -74,8 +95,13 @@ class TeamDetailViewModel(private val mode: Mode, private val teamId: Long?) : V
 
     fun onClickDone() {
         // TODO: Check required field
-        DataManager.submitTeam(team.value!!)
+        RepositoryManager.submitTeam(team.value!!)
         _navigateToTeamList.value = true
     }
 
+    private suspend fun getAllPokemon(): List<Pokemon> {
+        return withContext(Dispatchers.IO) {
+            dataSource.getAll()
+        }
+    }
 }

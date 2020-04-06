@@ -5,15 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.pokemontool.Mode
 import com.example.pokemontool.R
+import com.example.pokemontool.database.PokemonToolDatabase
 import com.example.pokemontool.databinding.FragmentTeamDetailBinding
 
 class TeamDetailFragment : Fragment() {
@@ -36,7 +37,8 @@ class TeamDetailFragment : Fragment() {
 
         val binding: FragmentTeamDetailBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_team_detail, container, false)
-        val viewModelFactory = TeamDetailViewModelFactory(mode, teamId)
+        val dataSource = PokemonToolDatabase.getInstance(requireActivity().application).pokemonDao
+        val viewModelFactory = TeamDetailViewModelFactory(mode, teamId, dataSource)
         val viewModel =
             ViewModelProvider(this, viewModelFactory).get(TeamDetailViewModel::class.java)
         binding.viewModel = viewModel
@@ -53,6 +55,12 @@ class TeamDetailFragment : Fragment() {
         })
         viewModel.navigateToTeamList.observe(viewLifecycleOwner, Observer {
             this.findNavController().navigate(R.id.action_teamDetailFragment_to_teamListFragment)
+        })
+
+        // AutoCompleteTextView
+        viewModel.allPokemon.observe(viewLifecycleOwner, Observer {
+            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, viewModel.allPokemon.value!!)
+            binding.pokemon1.setAdapter(adapter)
         })
 
         return binding.root
