@@ -59,8 +59,9 @@ class TeamDetailFragment : Fragment() {
 
         // AutoCompleteTextView
         viewModel.allPokemon.observe(viewLifecycleOwner, Observer {
-            val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, viewModel.allPokemon.value!!)
+            val adapter = PokemonAdapter(requireContext(), R.layout.layout_pokemon_list_item, viewModel.allPokemon.value!!)
             binding.pokemon1.setAdapter(adapter)
+            binding.pokemon1.threshold = 1
         })
 
         return binding.root
