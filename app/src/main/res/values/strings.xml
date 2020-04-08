@@ -28,4 +28,6 @@
     <string name="_6">6:</string>
     <string name="date">DATE</string>
     <string name="archive">Archive</string>
+    <string name="error_required_message">This field is required.</string>
+    <string name="error_invalid_input_message">Invalid input.</string>
 </resources>

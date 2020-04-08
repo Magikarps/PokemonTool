@@ -11,9 +11,7 @@ import com.example.pokemontool.database.Pokemon
 import com.example.pokemontool.database.PokemonDao
 import com.example.pokemontool.database.Team
 import com.example.pokemontool.network.RepositoryManager
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
 
 class TeamDetailViewModel(
@@ -28,10 +26,6 @@ class TeamDetailViewModel(
     var editButtonVisible = View.GONE
     var inputType = 0
 
-    // viewModelJob allows us to cancel all coroutines started by this ViewModel
-    private var viewModelJob = Job()
-    private val dbScope = CoroutineScope(Dispatchers.IO + viewModelJob)
-
     // Screen Transition
     private val _navigateToEditMode = MutableLiveData<Boolean>()
     val navigateToEditMode: LiveData<Boolean>
@@ -39,6 +33,9 @@ class TeamDetailViewModel(
     private val _navigateToTeamList = MutableLiveData<Boolean>()
     val navigateToTeamList: LiveData<Boolean>
         get() = _navigateToTeamList
+    private val _message = MutableLiveData<String>()
+    val message: LiveData<String>
+        get() = _message
 
     // Data
     private val _team = MutableLiveData<Team>()
@@ -95,8 +92,12 @@ class TeamDetailViewModel(
 
     fun onClickDone() {
         // TODO: Check required field
-        RepositoryManager.submitTeam(team.value!!)
-        _navigateToTeamList.value = true
+        if (RepositoryManager.submitTeam(team.value!!)) {
+            _message.value = "Successfully added a team"
+            _navigateToTeamList.value = true
+        } else {
+            _message.value = "Network failed. Please try again."
+        }
     }
 
     private suspend fun getAllPokemon(): List<Pokemon> {

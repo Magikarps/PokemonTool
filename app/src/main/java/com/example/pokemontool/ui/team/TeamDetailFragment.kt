@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -59,10 +59,24 @@ class TeamDetailFragment : Fragment() {
 
         // AutoCompleteTextView
         viewModel.allPokemon.observe(viewLifecycleOwner, Observer {
-            val adapter = PokemonAdapter(requireContext(), R.layout.layout_pokemon_list_item, viewModel.allPokemon.value!!)
+            val adapter = PokemonAdapter(
+                requireContext(),
+                R.layout.layout_pokemon_list_item,
+                viewModel.allPokemon.value!!
+            )
+
             binding.pokemon1.setAdapter(adapter)
             binding.pokemon1.threshold = 1
+            // validator
+            binding.pokemon1InputLayout.setAutoCompValidator(true)
+
         })
+        viewModel.message.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        })
+
+        // Validation
+        binding.teamInputLayout.setEditTextValidator()
 
         return binding.root
     }

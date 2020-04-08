@@ -46,8 +46,8 @@ object RepositoryManager {
         return teamL
     }
 
-    fun submitTeam(team: Team) {
+    fun submitTeam(team: Team):Boolean {
 
-
+        return true
     }
 }

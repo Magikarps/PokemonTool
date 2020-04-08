@@ -14,6 +14,7 @@ class PokemonAdapter(context: Context, private val resource: Int, val list: List
     ArrayAdapter<Pokemon>(context, resource, list) {
 
     private val filter = PokemonFilter(this)
+    val nameList = list.map { pokemon ->  pokemon.nameEn}
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val activity = context as Activity
