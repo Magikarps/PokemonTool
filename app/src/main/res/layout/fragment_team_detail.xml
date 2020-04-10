@@ -33,7 +33,7 @@
                     android:id="@+id/team_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/team"
+                    android:text="@string/team_required"
                     android:textColor="@color/baseTextColor"
                     android:textSize="14sp" />
 
@@ -138,6 +138,8 @@
                         android:id="@+id/pokemon2_input_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:errorEnabled="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
@@ -150,7 +152,6 @@
                             android:id="@+id/pokemon_2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
                             android:inputType="@{viewModel.inputType}"
                             android:text="@{viewModel.team.pokemon2}" />
 
@@ -176,19 +177,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <AutoCompleteTextView
-                        android:id="@+id/pokemon_3"
+                    <com.example.pokemontool.ui.TextInputLayoutWithValidator
+                        android:id="@+id/pokemon3_input_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:inputType="@{viewModel.inputType}"
-                        android:text="@{viewModel.team.pokemon3}"
+                        app:errorEnabled="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintHorizontal_weight="9"
                         app:layout_constraintStart_toEndOf="@+id/pokemon_3_label"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <AutoCompleteTextView
+                            android:id="@+id/pokemon_3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="@{viewModel.inputType}"
+                            android:text="@{viewModel.team.pokemon2}" />
+
+                    </com.example.pokemontool.ui.TextInputLayoutWithValidator>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -210,19 +220,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <AutoCompleteTextView
-                        android:id="@+id/pokemon_4"
+                    <com.example.pokemontool.ui.TextInputLayoutWithValidator
+                        android:id="@+id/pokemon4_input_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:inputType="@{viewModel.inputType}"
-                        android:text="@{viewModel.team.pokemon4}"
+                        app:errorEnabled="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintHorizontal_weight="9"
                         app:layout_constraintStart_toEndOf="@+id/pokemon_4_label"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <AutoCompleteTextView
+                            android:id="@+id/pokemon_4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="@{viewModel.inputType}"
+                            android:text="@{viewModel.team.pokemon2}" />
+
+                    </com.example.pokemontool.ui.TextInputLayoutWithValidator>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -244,19 +263,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <AutoCompleteTextView
-                        android:id="@+id/pokemon_5"
+                    <com.example.pokemontool.ui.TextInputLayoutWithValidator
+                        android:id="@+id/pokemon5_input_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:inputType="@{viewModel.inputType}"
-                        android:text="@{viewModel.team.pokemon5}"
+                        app:errorEnabled="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintHorizontal_weight="9"
                         app:layout_constraintStart_toEndOf="@+id/pokemon_5_label"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <AutoCompleteTextView
+                            android:id="@+id/pokemon_5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="@{viewModel.inputType}"
+                            android:text="@{viewModel.team.pokemon2}" />
+
+                    </com.example.pokemontool.ui.TextInputLayoutWithValidator>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -278,19 +306,28 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <AutoCompleteTextView
-                        android:id="@+id/pokemon_6"
+                    <com.example.pokemontool.ui.TextInputLayoutWithValidator
+                        android:id="@+id/pokemon6_input_layout"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:inputType="@{viewModel.inputType}"
-                        android:text="@{viewModel.team.pokemon6}"
+                        app:errorEnabled="true"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintHorizontal_weight="9"
                         app:layout_constraintStart_toEndOf="@+id/pokemon_6_label"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <AutoCompleteTextView
+                            android:id="@+id/pokemon_6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="@{viewModel.inputType}"
+                            android:text="@{viewModel.team.pokemon2}" />
+
+                    </com.example.pokemontool.ui.TextInputLayoutWithValidator>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>

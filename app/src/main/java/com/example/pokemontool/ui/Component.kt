@@ -37,7 +37,7 @@ class TextInputLayoutWithValidator : TextInputLayout {
             if (!hasFocus && required && input.isEmpty()) {
                 this.error =
                     context.getString(R.string.error_required_message)
-            } else if (!hasFocus && !adapter.nameList.contains(input)) {
+            } else if (!hasFocus && input.isNotEmpty() && !adapter.nameList.contains(input)) {
                 this.error =
                     context.getString(R.string.error_invalid_input_message)
             } else {

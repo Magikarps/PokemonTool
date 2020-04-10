@@ -65,10 +65,25 @@ class TeamDetailFragment : Fragment() {
                 viewModel.allPokemon.value!!
             )
 
+            // validator and adapter
             binding.pokemon1.setAdapter(adapter)
             binding.pokemon1.threshold = 1
-            // validator
             binding.pokemon1InputLayout.setAutoCompValidator(true)
+            binding.pokemon2.setAdapter(adapter)
+            binding.pokemon2.threshold = 1
+            binding.pokemon2InputLayout.setAutoCompValidator(false)
+            binding.pokemon3.setAdapter(adapter)
+            binding.pokemon3.threshold = 1
+            binding.pokemon3InputLayout.setAutoCompValidator(false)
+            binding.pokemon4.setAdapter(adapter)
+            binding.pokemon4.threshold = 1
+            binding.pokemon4InputLayout.setAutoCompValidator(false)
+            binding.pokemon5.setAdapter(adapter)
+            binding.pokemon5.threshold = 1
+            binding.pokemon5InputLayout.setAutoCompValidator(false)
+            binding.pokemon6.setAdapter(adapter)
+            binding.pokemon6.threshold = 1
+            binding.pokemon6InputLayout.setAutoCompValidator(false)
 
         })
         viewModel.message.observe(viewLifecycleOwner, Observer {
