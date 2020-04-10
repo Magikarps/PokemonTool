@@ -18,6 +18,9 @@ interface PokemonDao {
     @Query("SELECT * FROM pokemon WHERE pokemonId = :key")
     fun get(key: String): Pokemon
 
+    @Query("SELECT * FROM pokemon")
+    fun getAll(): List<Pokemon>
+
 //    @Query("SELECT * FROM pokemon WHERE name_jp = :name")
 //    fun getPokemonByNameJp(name: String): List<Pokemon>
 //

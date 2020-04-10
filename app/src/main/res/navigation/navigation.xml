@@ -57,7 +57,14 @@
         <action
             android:id="@+id/action_teamDetailFragment_to_teamListFragment"
             app:destination="@id/teamListFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/teamListFragment" />
+        <action
+            android:id="@+id/action_teamDetailFragment_self"
+            app:destination="@id/teamDetailFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/historyDetailFragment"

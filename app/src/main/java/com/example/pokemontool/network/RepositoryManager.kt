@@ -1,10 +1,17 @@
 package com.example.pokemontool.network
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.pokemontool.database.Team
 
-object DataManager {
+object RepositoryManager {
+    fun getTeam(teamId: Long): Team? {
+        // TODO: dummy data
+        val data = getTeamList()
+        return data.value?.get(teamId.toInt())
+    }
+
     fun getTeamList(): LiveData<List<Team>> {
         // TODO: dummy data
         val teamL = MutableLiveData<List<Team>>()
@@ -13,6 +20,7 @@ object DataManager {
             Team(
                 0L,
                 "Team 1",
+                false,
                 "Magikarp",
                 "Magikarp",
                 "Magikarp",
@@ -23,8 +31,9 @@ object DataManager {
         )
         temp.add(
             Team(
-                0L,
+                1L,
                 "Team 2",
+                true,
                 "Pikachu",
                 "Pikachu",
                 "Pikachu",
@@ -35,5 +44,10 @@ object DataManager {
         )
         teamL.value = temp
         return teamL
+    }
+
+    fun submitTeam(team: Team):Boolean {
+
+        return true
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -32,7 +31,6 @@ class TeamListFragment : Fragment() {
         binding.setLifecycleOwner(this)
 
         val adapter = TeamListAdapter(TeamListListener { teamId ->
-            Toast.makeText(context, "$teamId clicked!", Toast.LENGTH_SHORT).show()
             viewModel.onTeamClicked(teamId)
         })
         binding.teamList.adapter = adapter
@@ -42,7 +40,7 @@ class TeamListFragment : Fragment() {
         })
         viewModel.navigateToTeamDetail.observe(viewLifecycleOwner, Observer { teamId ->
             teamId?.let {
-                val bundle = bundleOf("mode" to Mode.EDIT, "teamId" to teamId)
+                val bundle = bundleOf("mode" to Mode.REFERENCE, "teamId" to teamId)
                 this.findNavController().navigate(R.id.action_teamListFragment_to_teamDetailFragment, bundle)
             }
         })

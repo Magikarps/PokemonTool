@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 class Team {
     var teamId: Long? = null
     var teamName: String? = null
+    var archive: Boolean = false
     var pokemon1: String? = null
     var pokemon2: String? = null
     var pokemon3: String? = null
@@ -19,6 +20,7 @@ class Team {
     constructor(
         teamId: Long?,
         teamName: String? = null,
+        archive: Boolean = false,
         pokemon1: String? = null,
         pokemon2: String? = null,
         pokemon3: String? = null,
@@ -28,6 +30,7 @@ class Team {
     ) {
         this.teamId = teamId
         this.teamName = teamName
+        this.archive = archive
         this.pokemon1 = pokemon1
         this.pokemon2 = pokemon2
         this.pokemon3 = pokemon3
